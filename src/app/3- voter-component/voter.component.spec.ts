@@ -1,6 +1,7 @@
 import { VoterComponent } from './voter.component';
 
-describe('VoterComponent', () => {
+/*
+xdescribe('VoterComponent', () => {
     let component: VoterComponent;
 
     beforeEach(() => {
@@ -100,3 +101,4 @@ describe('VoterComponent', () => {
       });
     });
 });
+*/
