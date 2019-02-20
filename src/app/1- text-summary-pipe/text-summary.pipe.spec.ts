@@ -1,5 +1,57 @@
 import { TextSummaryPipe } from './text-summary.pipe';
 
+let pipe: TextSummaryPipe;
+
+beforeEach(() => {
+  pipe = new TextSummaryPipe();
+})
+
+describe('TextSummaryPipe', () => {
+  it('should return an empty string if the value is null',() => {
+    expect(pipe.transform(null)).toBe('');
+  });
+
+  it('should return an empty string if the value is undefined',() => {
+    expect(pipe.transform(undefined)).toBe('');
+  });
+
+  it('should return an empty string if the value is an empty string',() => {
+    expect(pipe.transform('')).toBe('');
+  });
+
+  it('should return the identical string if there are no arguments and length is less than 10', () => {
+    const testValue = "MyString" // 8 characters
+
+    const returnValue = pipe.transform(testValue);
+
+    expect(returnValue).toBe(testValue);
+  });
+
+  it('should return the identical string if there are no arguments and length is equal to 10', () => {
+    const testValue = "MyStringAB" // 10 characters
+
+    const returnValue = pipe.transform(testValue);
+
+    expect(returnValue).toBe(testValue);
+  });
+
+  it('should return a clipped string, ending with ..., if there are no arguments and length is more than 10', () => {
+    const testValue = "MyStringTooLong" // 15 characters
+
+    const returnValue = pipe.transform(testValue);
+
+    expect(returnValue).toBe('MyStringTo...');
+  });
+
+  it('should return a clipped string, ending with ..., if the argument is 7 and length is more than 7', () => {
+    const testValue = "MyStringTooLong" // 15 characters
+
+    const returnValue = pipe.transform(testValue, 7);
+
+    expect(returnValue).toBe('MyStrin...');
+  });
+});
+
 /*
 xdescribe('TextSummaryPipe', () => {
   let pipe: TextSummaryPipe;
